@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 class QuestionRepository(private val dao: QuestionDao) {
     val allQuestions: Flow<List<Question>> = dao.getAllQuestions()
     suspend fun insert(question: Question) = dao.insert(question)
+    suspend fun delete(question: Question) = dao.delete(question)
 }

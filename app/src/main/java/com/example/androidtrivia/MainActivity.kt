@@ -10,21 +10,16 @@ import androidx.navigation.compose.rememberNavController
 import com.example.androidtrivia.data.db.AppDatabase
 import com.example.androidtrivia.ui.navigation.TriviaNavGraph
 import com.example.androidtrivia.viewmodel.TriviaViewModel
+import com.example.androidtrivia.viewmodel.TriviaViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val database = AppDatabase.getDatabase(this)
-
         setContent {
             val navController = rememberNavController()
             val triviaViewModel = viewModel<TriviaViewModel>(
-                factory = object : ViewModelProvider.Factory {
-                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                        return TriviaViewModel(database) as T
-                    }
-                }
+                factory = TriviaViewModelFactory(application)
             )
             TriviaNavGraph(navController = navController, viewModel = triviaViewModel)
         }

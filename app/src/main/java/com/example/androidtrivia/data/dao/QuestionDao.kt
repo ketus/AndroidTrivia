@@ -5,6 +5,7 @@ import com.example.androidtrivia.data.model.Question
 import kotlinx.coroutines.flow.Flow
 
 @Dao
+@Entity(tableName = "questions")
 interface QuestionDao {
     @Query("SELECT * FROM questions")
     fun getAllQuestions(): Flow<List<Question>>

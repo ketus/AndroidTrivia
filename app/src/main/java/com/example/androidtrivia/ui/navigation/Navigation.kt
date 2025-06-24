@@ -1,6 +1,7 @@
 package com.example.androidtrivia.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,8 +19,8 @@ sealed class Screen(val route: String) {
 fun TriviaNavGraph(navController: NavHostController, viewModel: TriviaViewModel) {
     NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) { HomeScreen(navController) }
-        composable(Screen.AddQuestion.route) { AddQuestionScreen(navController, viewModel) }
-        composable(Screen.Quiz.route) { QuizScreen(navController, viewModel) }
+        composable(Screen.AddQuestion.route) { AddQuestionScreen(navController, viewModel, Modifier) }
+        composable(Screen.Quiz.route) { QuizScreen(navController, viewModel, Modifier) }
         composable(Screen.Scoreboard.route) { ScoreboardScreen(navController, viewModel) }
     }
 }
